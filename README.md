@@ -10,7 +10,7 @@ For more information about F5GC or OAI:
 
 ### Overview of the system structure
 
-The image above represent the actual system and how it is disposed.
+The image above represent the actual system and how it is placed.
 
 <p align="center">
     <img src="readme_images/docker_containers_ilustration.png"/> 
@@ -114,11 +114,19 @@ Then use ``ifconfig`` to visualize the network configuration. The expected behav
 
 Now type ``` ping google.com -I 45.45.0.2 ```, we are using the comunication interface created on the web app to verify the conectivity of the UE, in this case the OAITUN_UE1 (OpenAirInterface Tunnel UE1) is located on 45.45.0.2, so the test is: ``` ping google.com -I 45.45.0.2 ```. The result should be equivalent to that shown in the next figure:
 
+
 <p align="center">
-    <img src="images/ping_result.png"/> 
+    <img src="readme_images/ping_result.png"/> 
 </p>
 
-The presented results demonstrate that the UE establish an internet connection. This connection is provided through combining functionality from all Docker containers, of Free5GC components and OpenAirInterface System Emulation components.
+
+The presented results demonstrate that the UE establish an internet connection. This connection is provided through combining functionality from all Docker containers, of Free5GC components and OpenAirInterface System Emulation components. The final reasult of this implementation can be seen bellow:
+
+
+<p align="center">
+    <img src="readme_images/docker_containers_ilustration_2.png"/> 
+</p>
+
 
 
 
