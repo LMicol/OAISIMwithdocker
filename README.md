@@ -8,6 +8,11 @@ For more information about F5GC or OAI:
 * [free5gc](https://www.free5gc.org/)
 * [Open Air Interface](https://www.openairinterface.org/)
 
+# Overview of the system structure
+
+<p align="center">
+    <img src="readme_images/docker_containers_ilustration.png"/> 
+</p>
 
 ## Project Description
 
@@ -29,7 +34,6 @@ The main contribution of this branch is a split on eNB. Today the eNB can be cla
 However, this system was made to be a monolith environment, so every structure from above run in the same computer and in the same container. This functional split is made to alleviate the overload on the main eNB computer, by grouping the RCC and RAU in one container ans spliting the RRU to another. RRU also is a light part of the system that can be redundant.
 
 
-
 At the moment, what we have is a splited eNB to run on one computer, with all the others components.
 I have not tested yet if this program is running as expected in multiples machines.
 
@@ -38,15 +42,11 @@ I have not tested yet if this program is running as expected in multiples machin
 - Software
     - OS: Ubuntu 18.04
     - Linux kernel: 4.15.0-43-generic
-    - gcc 7.3.0
-    - Go 1.11.4
-    - QEMU emulator 2.11.1
 
 - Hardware recommended
     - CPU: Intel i5
     - RAM: 8GB
     - Hard drive: 50G
-    - NIC card: 1Gbps ethernet card
 
 ## Dependencies
 
@@ -56,14 +56,13 @@ To execute this program you need to install:
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
 
-
-
-## Base Image
+## Install
 Each box of project is based on a compiled free5gc image. To build this image use the follow command:
 ``sudo docker build -t free5gc-base .``
 
 Each box of project is based on a compiled oaisim image. To build this image use the follow command:
-``cd oaisim-base sudo docker build -t oaisim-base  .``
+``cd oaisim-base``
+``sudo docker build -t oaisim-base  .``
 
 
 ## Running
