@@ -17,12 +17,13 @@ The 5G have a lot of information and metricts that are fundamental to understand
 
 The eNB is the hardware that is connected to the mobile phone network that communicates directly wirelessly with mobile handsets (UEs). In this case, this hardware is simulated.
 
-The main contribution of this branch is a split on eNB. Today the eNB can be classified in three main components: 
-* RCC = 
-* RAU = 
-* RRU = 
+
+The main contribution of this branch is a split on eNB. Today the eNB can be classified in three main components, that can be visualized in this figure: 
 
 
+<p align="center">
+    <img src="readme_images/enb.png"/> 
+</p>
 
 
 However, this system was made to be a monolith environment, so every structure from above run in the same computer and in the same container. This functional split is made to alleviate the overload on the main eNB computer, by grouping the RCC and RAU in one container ans spliting the RRU to another. RRU also is a light part of the system that can be redundant.
