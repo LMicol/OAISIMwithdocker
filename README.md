@@ -72,7 +72,14 @@ Each box of project is based on a compiled oaisim image. To build this image use
 
 ## Running
 To run all boxes and Web interface use the follow command:
+
 ``sudo docker-compose up -d``
+
+After the docker-compose, type ``sudo docker ps``. This is the expected result:
+<p align="center">
+    <img src="readme_images/docker_ps.png"/> 
+</p>
+
 
 ## Testing
 To verify if everthing is running okay, you can firt check if **MongoDB** and **Web User Interface** is initialized. You can check this in your browser with the address ```http://<deployment-environment-IP-address>:3000```
@@ -84,12 +91,34 @@ The Web Application access port can be changed through the parameter ```web_appl
 
 After login, you must add one UE to the web interface for the tunneling on the user equipment work properly. By defaul this code is only using one user equipement for thesting the conectivity. You can add the information bellow to the respective windows.
 
+
 ``IMSI: 208930000000001``
+
 ``Subscriber Key: 8baf473f2f8fd09487cccbd7097c6862``
+
 ``Operator Key: e734f8734007d6c5ce7a0508809e7e9c``
 
 <p align="center">
     <img src="readme_images/web_page.png"/> 
 </p>
 
-# 
+Then you can proced to the ue testing. Login on the container of the UE using the following command:
+
+`` sudo docker exec -ti oaisimwithdocker_ue bash ``
+
+Then use ``ifconfig`` to visualize the network configuration. The expected behavior can be seen in the figure bellow. 
+
+<p align="center">
+    <img src="readme_images/ue_network_interfce.png"/> 
+</p>
+
+Now type ``` ping google.com -I 45.45.0.2 ```, we are using the comunication interface created on the web app to verify the conectivity of the UE, in this case the OAITUN_UE1 (OpenAirInterface Tunnel UE1) is located on 45.45.0.2, so the test is: ``` ping google.com -I 45.45.0.2 ```. The result should be equivalent to that shown in the next figure:
+
+<p align="center">
+    <img src="images/ping_result.png"/> 
+</p>
+
+The presented results demonstrate that the UE establish an internet connection. This connection is provided through combining functionality from all Docker containers, of Free5GC components and OpenAirInterface System Emulation components.
+
+
+
