@@ -58,8 +58,21 @@ services:
         networks:
             net1:
                 ipv4_address: 192.188.2.11
-    enb:
-        build: enb
+#    enb:
+#        build: enb
+#        depends_on:
+#            - upf
+#            - smf
+#            - amf
+#        privileged: true
+#        cap_add:
+#            - NET_ADMIN
+#        networks:
+#            net1:
+#                ipv4_address: 192.188.2.253
+
+    rru:
+        build: rru
         depends_on:
             - upf
             - smf
@@ -69,14 +82,30 @@ services:
             - NET_ADMIN
         networks:
             net1:
+                ipv4_address: 192.188.2.252
+
+    rcc:
+        build: rcc
+        depends_on:
+            - upf
+            - smf
+            - amf
+            - rru
+        privileged: true
+        cap_add:
+            - NET_ADMIN
+        networks:
+            net1:
                 ipv4_address: 192.188.2.253
+
     ue:
         build: ue
         depends_on:
             - upf
             - smf
             - amf
-            - enb
+            #- enb
+            - rru
             - webapp
         privileged: true
         cap_add:

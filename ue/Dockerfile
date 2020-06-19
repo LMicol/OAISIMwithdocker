@@ -1,7 +1,7 @@
 FROM oaisim-base
 
-RUN git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git ue_folder
-RUN cd ue_folder && git checkout develop
+RUN git clone https://github.com/LMicol/oaisim_folder.git ue_folder
+RUN cd ue_folder && git checkout master
 
 RUN adduser l2nfapi
 RUN adduser l2nfapi sudo
@@ -15,8 +15,13 @@ RUN cd ue_folder/cmake_targets && sudo ./build_oai --UE -I -c
 
 COPY ue.nfapi.conf /ue_folder/ci-scripts/conf_files/ue.nfapi.conf
 COPY ue_eurecom_test_sfr.conf    /ue_folder/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+
+COPY register_ue /root/register_ue
+RUN chmod +x /root/register_ue /ue_folder/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+
 COPY script.sh /root/script.sh
 RUN chmod +x /root/script.sh
+
 RUN sudo ./root/script.sh
 RUN cd ue_folder/targets/bin && sudo ./conf2uedata -c /ue_folder/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf -o /ue_folder/cmake_targets/ran_build/build/
 COPY exec.sh /exec.sh
